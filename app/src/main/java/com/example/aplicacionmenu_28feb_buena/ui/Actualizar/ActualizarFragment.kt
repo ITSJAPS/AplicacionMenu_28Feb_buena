@@ -1,9 +1,11 @@
 package com.example.aplicacionmenu_28feb_buena.ui.Actualizar
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,6 +38,14 @@ class ActualizarFragment : Fragment() {
         val adapter = CustomAdapter()
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+
+
+        binding.recyclerView.setOnClickListener{
+            Toast.makeText(binding.recyclerView.context,
+                "hola",Toast.LENGTH_SHORT
+            ).show()
+
+        }
 
         return root
     }
