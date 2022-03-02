@@ -1,5 +1,6 @@
 package com.example.aplicacionmenu_28feb_buena.ui.Insertar
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -32,10 +33,25 @@ class InsertarFragment : Fragment() {
         _binding = FragmentInsertarBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
+        val recyclerView =root.findViewById<RecyclerView>(R.id.recyclerView)
+        val adapter = CustomAdapter()
+        cargarEtiquetas(recyclerView,adapter)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
 
+        adapter.setOnItemClickListener(object :CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int){
+                var nombre = adapter.titles[position]
+              //  AlertDialog.Builder(requireContext()).setTitle(" ${nombre}").show()
+            }
+        })
         return root
     }
 
+    private fun cargarEtiquetas(recyclerView: RecyclerView, adapter: CustomAdapter) {
+        recyclerView.layoutManager= LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

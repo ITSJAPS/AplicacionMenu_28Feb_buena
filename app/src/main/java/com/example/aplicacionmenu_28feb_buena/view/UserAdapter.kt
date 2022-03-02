@@ -2,7 +2,7 @@ package com.example.aplicacionmenu_28feb_buena.view
 
 import android.app.admin.DevicePolicyManager
 import android.content.Context
-import android.service.autofill.UserData
+import com.example.aplicacionmenu_28feb_buena.model.UserData
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,7 +28,8 @@ class UserAdapter(val c: Context, val userList: ArrayList<UserData>):RecyclerVie
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val newList= userList[position]
-       // holder.name.text = newList.userName
+        holder.name.text = newList.userName
+        holder.nbNum.text = newList.userMb
     }
 
     override fun getItemCount(): Int {
