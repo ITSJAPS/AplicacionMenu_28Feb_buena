@@ -1,5 +1,6 @@
 package com.example.aplicacionmenu_28feb_buena.ui.Eliminar
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,9 +34,26 @@ class EliminarFragment : Fragment() {
 
         val recyclerView =root.findViewById<RecyclerView>(R.id.recyclerView)
         val adapter = CustomAdapter()
+
+       cargarEtiquetas(recyclerView,adapter)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
+
+        adapter.setOnItemClickListener(object :CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int){
+                var nombre = adapter.titles[position]
+                AlertDialog.Builder(requireContext()).setTitle("Deseas Eliminar? ${nombre}").show()
+            }
+        })
+
+
         return root
+    }
+
+
+    private fun cargarEtiquetas(recyclerView: RecyclerView, adapter: CustomAdapter) {
+        recyclerView.layoutManager= LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {

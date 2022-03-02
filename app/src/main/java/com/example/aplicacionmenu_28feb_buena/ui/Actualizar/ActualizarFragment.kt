@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.aplicacionmenu_28feb_buena.CustomAdapter
 import com.example.aplicacionmenu_28feb_buena.R
 import com.example.aplicacionmenu_28feb_buena.databinding.FragmentActualizarBinding
+import java.text.FieldPosition
 
 
 class ActualizarFragment : Fragment() {
@@ -36,18 +37,24 @@ class ActualizarFragment : Fragment() {
 
         val recyclerView =root.findViewById<RecyclerView>(R.id.recyclerView)
         val adapter = CustomAdapter()
+
+        cargarEtiquetas(recyclerView,adapter)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
 
-
-        binding.recyclerView.setOnClickListener{
-            Toast.makeText(binding.recyclerView.context,
-                "hola",Toast.LENGTH_SHORT
-            ).show()
-
-        }
+        adapter.setOnItemClickListener(object :CustomAdapter.onItemClickListener{
+            override fun onItemClick(position: Int){
+                var nombre = adapter.titles[position]
+                AlertDialog.Builder(requireContext()).setTitle("Deseas Actualizar? ${nombre}").show()
+            }
+        })
 
         return root
+    }
+
+    private fun cargarEtiquetas(recyclerView: RecyclerView, adapter: CustomAdapter) {
+        recyclerView.layoutManager= LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapter
     }
 
     override fun onDestroyView() {

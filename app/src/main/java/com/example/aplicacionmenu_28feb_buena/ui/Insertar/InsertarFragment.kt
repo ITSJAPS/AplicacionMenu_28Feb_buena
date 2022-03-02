@@ -32,10 +32,6 @@ class InsertarFragment : Fragment() {
         _binding = FragmentInsertarBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val recyclerView =root.findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = CustomAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
 
         return root
     }
